@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/lynndylanhurley/devise_token_auth.git
+  revision: c92258038c05fcc8f6a0374ccce2e63b9f8d5312
+  specs:
+    devise_token_auth (1.1.4)
+      bcrypt (~> 3.0)
+      devise (> 3.5.2, < 5)
+      rails (>= 4.2.0, < 6.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -102,6 +111,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.1.0)
@@ -163,8 +174,10 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   devise
+  devise_token_auth!
   listen (~> 3.3)
   puma (~> 5.0)
+  rack-cors
   rails (~> 6.1.0)
   spring
   sqlite3 (~> 1.4)
