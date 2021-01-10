@@ -5,7 +5,7 @@ class EventsController < ApplicationController
       render json: @events
     else  
       @parameter = search_params[:search].downcase
-      @events = current_user.events.where("title ILIKE :search", search: "%#{@parameter}%")  
+      @events = current_user.events.where("LOWER(title) LIKE LOWER(:search)", search: "%#{@parameter}%")  
       render json: @events
     end  
   end
