@@ -1,7 +1,13 @@
 class EventsController < ApplicationController
   def index
-    @events = current_user.events.order('start_datetime ASC')
-    render json: @events
+    if params[:search].blank?  
+      @events = current_user.events.order('start_datetime ASC')
+      render json: @events
+    else  
+      @parameter = search_params[:search].downcase
+      @events = current_user.events.where("title LIKE :search", search: "%#{@parameter}%")  
+      render json: @events
+    end  
   end
 
   def show
@@ -40,6 +46,10 @@ class EventsController < ApplicationController
   private
   def event_params
     params.require(:event).permit(:description, :title, :start_datetime, :location)
+  end
+
+  def search_params
+    params.permit(:search)
   end
 end
 
