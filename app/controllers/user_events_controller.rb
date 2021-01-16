@@ -21,7 +21,7 @@ class UserEventsController < ApplicationController
   def create
     @event = current_user.events.new(event_params)
     if @event.save
-      render json: @event
+      render @event.as_json(except: :user_id, include: {user: {only: [:name, :nickname, :image, :id, :email]}})
     else
       render json: @event.errors, status: :unprocessable_entity
     end
@@ -30,7 +30,7 @@ class UserEventsController < ApplicationController
   def update
     @event = current_user.events.find(params[:id])
     if @event.update(event_params)
-      render json: @event
+      render json: @event.as_json(except: :user_id, include: {user: {only: [:name, :nickname, :image, :id, :email]}})
     else
       render json: @event.errors, status: :unprocessable_entity
     end
